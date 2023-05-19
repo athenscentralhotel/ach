@@ -88,7 +88,7 @@ const MobileAds = (props: MobileAdsProps) => {
   return (
     <div className="w-full max-w-2xl mx-auto relative">
       {!props.isFirstRender && props.ads && (
-        <div className="flex flex-col gap-4 min-[300px]:gap-2 min-[300px]:flex-row justify-start items-center min-[300px]:justify-between">
+        <div className="flex gap-2 justify-between items-center">
           <div className="-ml-10 -mt-5 min-[300px]:mt-0 min-[300px]:ml-0 max-w-[18rem]">
             <div className="overflow-hidden w-[130px] aspect-square">
               <iframe
