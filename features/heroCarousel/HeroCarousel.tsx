@@ -1,6 +1,5 @@
 import { AnimatePresence, motion, MotionProps, Variants } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import {
   Dispatch,
   MutableRefObject,
@@ -11,7 +10,6 @@ import {
   useState,
 } from 'react';
 import { ReviewSummaryStat } from '../hero/hero';
-import { navlinks } from '../nav/navlinks';
 
 type ObjectFit = 'cover' | 'contain' | 'fill';
 
@@ -146,45 +144,12 @@ const HeroCarousel = (props: HeroCarouselProps) => {
   }, [updateCursor, inControl, reverse, rerender]);
 
   return (
-    <div className="flex flex-row justify-center items-center w-full -mt-8 md:mt-8">
+    <div className="flex flex-row justify-center items-center w-full">
       <motion.div
-        className={`relative w-full max-w-[clamp(42rem,54vw,54vh)] aspect-[5/3] rounded-lg mb-1 mt-4 sm:-mt-3 md:-mt-8 lg:-mt-16`}
+        className={`relative w-full max-w-[clamp(42rem,54vw,54vh)] aspect-[5/3] rounded-lg`}
         layout
       >
-        <div className="relative flex flex-col gap-2 -translate-y-full">
-          <div className="text-center mt-5 text-gray-link flex justify-center items-center gap-2">
-            Average review is
-            <span className="text-black -mr-1">
-              {props.reviewStats.averageReviews}
-            </span>
-            <p className="text-black -mr-2">out of 5</p>{' '}
-          </div>
-          <Link
-            href={`/#${navlinks[4].route}`}
-            className="text-blue-dark text-center hover:underline w-fit mx-auto p-2"
-          >
-            See our reviews
-          </Link>
-        </div>
-        {/* <div className="relative flex flex-col gap-2 -translate-y-full">
-          <p className="text-center mt-5 text-gray-link flex justify-center items-center gap-2">
-            We have{' '}
-            <span className="text-black">
-              {props.reviewStats.numberOfReviews}
-            </span>{' '}
-            reviews averaging
-            <span className="text-black -mr-1">
-              {props.reviewStats.averageReviews}
-            </span>
-            <p className="text-black -mr-2">/ 5</p>.{' '}
-          </p>
-          <Link
-            href={`/#${navlinks[4].route}`}
-            className="text-blue-light text-center hover:underline w-fit mx-auto p-2"
-          >
-            See our reviews
-          </Link>
-        </div> */}
+        <div className="relative flex flex-col gap-2"></div>
         <AnimatePresence mode="sync">
           {cursor.slice.map((el, index) => (
             <HeroCarouselImage

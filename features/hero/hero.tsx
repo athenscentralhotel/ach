@@ -1,6 +1,7 @@
 import { createClient } from 'contentful';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { memo, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { TABLET_MEDIA_QUERY } from '../../constants';
@@ -41,12 +42,9 @@ const Hero = (props: HeroProps) => {
   if (isFirstRender) return null;
 
   return (
-    <main className="relative w-full mt-0 overflow-clip" id="hero">
+    <main className="relative w-full -mt-10 overflow-clip" id="hero">
       <SiteBG src={data.backgroundImage} />
-      <motion.div
-        className="flex flex-col items-center justify-start w-full gap-10 mx-auto overflow-hidden mt:gap-14 md:gap-16 h-fit"
-        layout
-      >
+      <motion.div layout>
         <Pitch
           mobile={isMobile}
           isFirstRender={isFirstRender}
@@ -63,6 +61,7 @@ const Hero = (props: HeroProps) => {
             starText={data.starText}
           />
         )}
+        <ReviewSummary />
         <HeroCarousel
           hints={false}
           imageData={data.imageData}
@@ -91,10 +90,10 @@ interface MobileAdsProps {
 
 const MobileAds = (props: MobileAdsProps) => {
   return (
-    <div className="w-full max-w-2xl mx-auto relative -top-16">
-      {!props.isFirstRender && props.mobile && props.ads && (
+    <div className="w-full max-w-2xl mx-auto relative">
+      {!props.isFirstRender && props.ads && (
         <div className="flex flex-col gap-4 min-[300px]:gap-2 min-[300px]:flex-row justify-start items-center min-[300px]:justify-between">
-          <div className="-ml-10 min-[300px]:-ml-[25px] -mt-5 min-[300px]:mt-0 min-[300px]:ml-0 max-w-[18rem]">
+          <div className="-ml-10 -mt-5 min-[300px]:mt-0 min-[300px]:ml-0 max-w-[18rem]">
             <div className="overflow-hidden w-[130px] aspect-square">
               <iframe
                 className="scale-75 select-none"
@@ -104,7 +103,7 @@ const MobileAds = (props: MobileAdsProps) => {
               ></iframe>
             </div>
           </div>
-          <div className="flex flex-col gap-3 max-w-[8rem] w-fit min-[300px]:mr-7">
+          <div className="flex flex-col gap-3 max-w-[8rem] w-fit min-[300px]:mr-10">
             <StarDiv>
               <p className="text-center font-medium text-white text-sm min-w-[6rem]">
                 {props.starText}
@@ -118,48 +117,44 @@ const MobileAds = (props: MobileAdsProps) => {
 };
 
 const Pitch = (props: PitchProps) => (
-  <div className={`w-full mx-auto ${props.ads ? '-mt-[1.5rem]' : ''}`}>
-    {!props.isFirstRender && !props.mobile && props.ads && (
-      <div>
-        <div className="flex flex-col gap-3 absolute bottom-[65%] right-16 max-w-[8rem]">
-          <StarDiv>
-            <p className="text-sm font-medium text-center text-white">
-              The only 4 star hotel in Athens
-            </p>
-          </StarDiv>
-        </div>
-        <div className="max-w-[18rem] absolute bottom-[60%]">
-          <div className="overflow-hidden w-[130px] aspect-square">
-            <iframe
-              className="scale-75 select-none"
-              aria-label="a booking.com rating point card"
-              referrerPolicy="no-referrer"
-              src="https://badge.hotelstatic.com/?position=inline&amp;clickable=true&amp;url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fus%2Fathens-central.html"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    )}
+  <div className={`w-full mx-auto`}>
     <section className="relative flex flex-col items-center justify-center max-w-5xl gap-1 mx-auto mt-12 cursor-default md:mt-10">
-      <h1 className="px-6 font-title font-normal uppercase tracking-wide text-[1.94rem] sm:text-[2.3rem] mt:text-[2.38rem] md:text-[2.5rem] lg:text-[2.58rem] xl:text-[2.69rem] cursor-default text-center mb-[0.3rem] text-blue-deep">
+      <h1 className="px-6 font-title font-black uppercase tracking-wide text-[1.94rem] sm:text-[2.3rem] mt:text-[2.38rem] md:text-[2.5rem] lg:text-[2.58rem] xl:text-[2.69rem] cursor-default text-center mb-[0.3rem] text-blue-deep">
         {props.heroData.hotelName}
       </h1>
       <h2 className="px-6 font-subtitle font-normal cursor-default text-[1.125rem] lg:text-[1.2rem] xl:text-[1.25rem] text-center text-gray-link tracking-wide mt-1 mt:mt-0">
         {props.heroData.hotelCaption}
       </h2>
-      {props.isFirstRender && <div className="w-1 h-7"></div>}
-      {!props.isFirstRender && !props.mobile && (
-        <motion.div
-          className="flex items-center justify-center gap-6 mt-7"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.22 } }}
-        >
+      {!props.isFirstRender && (
+        <div className="mt-4">
           <CallButton />
-        </motion.div>
+        </div>
       )}
     </section>
   </div>
 );
+
+const ReviewSummary = () => {
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <div className="text-center text-gray-link flex justify-center items-center gap-2">
+        Average reviews are
+        <span className="text-black -mr-1">
+          {/* {props.reviewStats.averageReviews} */}
+          4.67
+        </span>
+        <p className="text-black -mr-2">out of 5</p>{' '}
+      </div>
+      <Link
+        // href={`/#${navlinks[4].route}`}
+        href="/#reviews"
+        className="text-blue-dark text-center hover:underline w-fit mx-auto pb-4"
+      >
+        See our reviews
+      </Link>
+    </div>
+  );
+};
 
 const SiteBG = (props: { src: string }) => (
   <React.Fragment>
