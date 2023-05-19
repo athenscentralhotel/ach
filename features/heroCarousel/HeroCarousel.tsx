@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from 'react';
-import { ReviewSummaryStat } from '../hero/hero';
 
 type ObjectFit = 'cover' | 'contain' | 'fill';
 
@@ -42,7 +41,6 @@ let timer: undefined | NodeJS.Timeout = undefined;
 interface HeroCarouselProps {
   hints: boolean;
   imageData: ImageData[];
-  reviewStats: ReviewSummaryStat;
 }
 
 const HeroCarousel = (props: HeroCarouselProps) => {

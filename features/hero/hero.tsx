@@ -61,12 +61,8 @@ const Hero = (props: HeroProps) => {
             starText={data.starText}
           />
         )}
-        <ReviewSummary />
-        <HeroCarousel
-          hints={false}
-          imageData={data.imageData}
-          reviewStats={props.averageReviews}
-        />
+        <ReviewSummary reviewStats={props.averageReviews} />
+        <HeroCarousel hints={false} imageData={data.imageData} />
       </motion.div>
     </main>
   );
@@ -134,19 +130,17 @@ const Pitch = (props: PitchProps) => (
   </div>
 );
 
-const ReviewSummary = () => {
+const ReviewSummary = (props: { reviewStats: ReviewSummaryStat }) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="text-center text-gray-link flex justify-center items-center gap-2">
         Average reviews are
         <span className="text-black -mr-1">
-          {/* {props.reviewStats.averageReviews} */}
-          4.67
+          {props.reviewStats.averageReviews}
         </span>
         <p className="text-black -mr-2">out of 5</p>{' '}
       </div>
       <Link
-        // href={`/#${navlinks[4].route}`}
         href="/#reviews"
         className="text-blue-dark text-center hover:underline w-fit mx-auto pb-4"
       >
