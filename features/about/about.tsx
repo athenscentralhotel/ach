@@ -53,27 +53,7 @@ const About = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-3 max-w-[18rem]">
-              <div className="flex flex-col w-full min-[300px]:gap-2 min-[300px]:flex-row justify-start items-center min-[300px]:justify-between">
-                <div className="-ml-10 min-[300px]:-ml-[25px] -mt-5 min-[300px]:mt-0 min-[300px]:ml-0 max-w-[18rem] mr-4">
-                  <div className="overflow-hidden w-[130px] aspect-square">
-                    <iframe
-                      className="scale-75 select-none"
-                      aria-label="a booking.com rating point card"
-                      referrerPolicy="no-referrer"
-                      src="https://badge.hotelstatic.com/?position=inline&amp;clickable=true&amp;url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fus%2Fathens-central.html"
-                    ></iframe>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-3 max-w-[8rem] w-fit min-[300px]:mr-7">
-                  <StarDiv color="white">
-                    <p className="text-center font-semibold text-blue-deep text-sm max-w-[8rem]">
-                      The only 4 star hotel in Athens
-                    </p>
-                  </StarDiv>
-                </div>
-              </div>
-            </div>
+            <MobileAds />
           </div>
           <ErrorBoundary fallback={<p>failed to load google map</p>}>
             <iframe
@@ -137,6 +117,32 @@ const StickyHeader = (props: StickyHeaderProps) => {
       >
         <h2>{label}</h2>
       </ReactScrollLink>
+    </div>
+  );
+};
+
+const MobileAds = () => {
+  return (
+    <div className="w-full max-w-2xl mx-auto relative">
+      <div className="flex flex-col gap-4 min-[300px]:gap-2 min-[300px]:flex-row justify-start items-center min-[300px]:justify-between">
+        <div className="-ml-10 -mt-5 min-[300px]:mt-0 min-[300px]:ml-0 max-w-[18rem]">
+          <div className="overflow-hidden w-[130px] aspect-square">
+            <iframe
+              className="scale-75 select-none"
+              aria-label="a booking.com rating point card"
+              referrerPolicy="no-referrer"
+              src="https://badge.hotelstatic.com/?position=inline&amp;clickable=true&amp;url=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fus%2Fathens-central.html"
+            ></iframe>
+          </div>
+        </div>
+        <div className="flex flex-col gap-3 max-w-[8rem] w-fit min-[300px]:mr-10">
+          <StarDiv color="white">
+            <p className="text-center font-bold text-blue-dark text-sm min-w-[6rem]">
+              The only 4 star hotel in Athens
+            </p>
+          </StarDiv>
+        </div>
+      </div>
     </div>
   );
 };

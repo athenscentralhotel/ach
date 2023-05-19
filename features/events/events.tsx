@@ -24,7 +24,7 @@ const Events = (props: EventsProps) => {
   return (
     <div className="relative z-[1] w-full min-h-fit rounded-t-lg" id="events">
       <div className="w-full">
-        <div className="w-full sticky top-[2rem] sm:top-[4.95rem]  z-10 font-title select-none tracking-wider text-blue-deep text-2xl sm:text-3xl md:text-3xl font-normal mt:text-center flex flex-col justify-center py-5 mt-10 h-20">
+        <div className="w-full sticky top-[2rem] sm:top-[4.95rem]  z-10 font-title select-none tracking-wider text-blue-deep text-2xl sm:text-3xl md:text-3xl font-normal mt:text-center flex flex-col justify-center h-20">
           <Padding className="flex flex-col items-center justify-center">
             <ReactScrollLink
               to="events-content"
@@ -63,7 +63,7 @@ const Events = (props: EventsProps) => {
                   )}
                 </AnimatePresence>
               </div>
-              <div className="flex flex-col items-center justify-center min-h-full gap-3 mb-24 w-max max-w-fit">
+              <div className="flex flex-col items-center justify-center min-h-full gap-3 mb-8 w-max max-w-fit">
                 <p className="text-lg font-medium select-none font-subtitle text-gray-dark">
                   Call to set up an event
                 </p>
