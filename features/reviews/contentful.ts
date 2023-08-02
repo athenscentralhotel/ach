@@ -42,8 +42,8 @@ async function addReview(
 
   (_newReview.fields as any).name[LOCALE] =
     newReview?.name || (_newReview.fields as any).name[LOCALE];
-  (_newReview.fields as any).subtitle[LOCALE] =
-    newReview?.subtitle || (_newReview.fields as any).subtitle[LOCALE];
+  // (_newReview.fields as any).subtitle[LOCALE] =
+  //  newReview?.subtitle || (_newReview.fields as any).subtitle[LOCALE];
   (_newReview.fields as any).comment[LOCALE] =
     newReview?.comment || (_newReview.fields as any).comment[LOCALE];
   (_newReview.fields as any).rating[LOCALE] =
